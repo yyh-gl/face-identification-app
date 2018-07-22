@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block exhead %}
+{% endblock %}
+{% block contents %}
+<p><a href="{% url 'PyBoard:create' %}"><button type="button" class="btn btn-default">トピックを立てる</button></a></p>
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr class="something">
+			<th class="col-md-5">トピック</th>
+			<th class="col-md-1">投稿数</th>
+			<th class="col-md-2">作成日時</th>
+			<th class="col-md-2">更新日時</th>
+		</tr>
+	</thead>
+		{% for topic in topics %}
+		<tr class="something">
+			<td class="col-md-4"><a href="{% url 'PyBoard:detail' topic_id=topic.id %}">{{ topic.title }}</a></td>
+			<td class="col-md-1">{{ topic.topic_num }}</td>
+			<td class="col-md-2">{{ topic.register_name }}<br>{{ topic.register_datetime }}</td>
+			<td class="col-md-2">{{ topic.update_name }}<br>{{ topic.update_datetime }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<div class="col-sm-1"></div>
+{% endblock %}
